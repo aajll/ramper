@@ -1,0 +1,23 @@
+# cargo-deny policy. The crate has no runtime dependencies; the graph is
+# checked with dev-dependencies excluded so the gate describes what a
+# consumer links.
+
+[graph]
+all-features = true
+exclude-dev = true
+
+[advisories]
+unmaintained = "all"
+yanked = "deny"
+
+[licenses]
+allow = ["MIT"]
+confidence-threshold = 0.8
+
+[bans]
+multiple-versions = "deny"
+wildcards = "deny"
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"

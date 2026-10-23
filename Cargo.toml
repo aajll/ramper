@@ -1,0 +1,39 @@
+[package]
+name = "ramper"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+description = "A unit-agnostic linear and S-curve ramp generator for control loops, for no_std control code"
+license = "MIT"
+repository = "https://github.com/aajll/ramper"
+readme = "README.md"
+keywords = ["ramp", "slew-rate", "s-curve", "no-std", "control"]
+categories = ["embedded", "no-std", "no-std::no-alloc", "science::robotics"]
+exclude = [".github/"]
+
+[features]
+default = ["std"]
+# Square root from the standard library.
+std = []
+# Square root from the `libm` crate, for `no_std` targets.
+libm = ["dep:libm"]
+
+[dependencies]
+libm = { version = "0.2", optional = true, default-features = false }
+
+[dev-dependencies]
+proptest = { version = "1.5", default-features = false, features = ["std"] }
+
+[lints.rust]
+unsafe_code = "forbid"
+missing_docs = "warn"
+missing_debug_implementations = "warn"
+
+[lints.clippy]
+pedantic = { level = "warn", priority = -1 }
+
+[lints.rustdoc]
+broken_intra_doc_links = "deny"
+
+[package.metadata.docs.rs]
+all-features = true
